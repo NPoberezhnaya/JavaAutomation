@@ -16,5 +16,15 @@ public class GroupCreationTests extends TestBase {
 		sumbitGroupCreation();
 		returnToGroupPage();
 	}
-
+	
+	@Test
+	public void testEmptyGroupCreation() throws Exception {
+		openMainPage();
+		returnToGroupPage();
+		initGroupCreation();
+		GroupData group = new GroupData("", "", "");
+		fillGroupForm(group);
+		sumbitGroupCreation();
+		returnToGroupPage();
+	}
 }

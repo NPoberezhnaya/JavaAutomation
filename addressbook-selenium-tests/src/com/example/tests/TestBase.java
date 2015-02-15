@@ -60,6 +60,47 @@ public class TestBase {
 		driver.get(baseUrl + "/addressbookv4.1.4/");
 	}
 
+	protected void fillContactForm(ContactData contact) {
+		driver.findElement(By.name("firstname")).clear();
+		driver.findElement(By.name("firstname")).sendKeys(contact.firstName);
+		driver.findElement(By.name("lastname")).clear();
+		driver.findElement(By.name("lastname")).sendKeys(contact.lastName);
+		driver.findElement(By.name("address")).clear();
+		driver.findElement(By.name("address")).sendKeys(contact.address);
+		driver.findElement(By.name("home")).clear();
+		driver.findElement(By.name("home")).sendKeys(contact.homePhone);
+		driver.findElement(By.name("mobile")).clear();
+		driver.findElement(By.name("mobile")).sendKeys(contact.mobilePhone);
+		driver.findElement(By.name("work")).clear();
+		driver.findElement(By.name("work")).sendKeys(contact.workPhone);
+		driver.findElement(By.name("email")).clear();
+		driver.findElement(By.name("email")).sendKeys(contact.email);
+		driver.findElement(By.name("email2")).clear();
+		driver.findElement(By.name("email2")).sendKeys(contact.email2);
+
+		new Select(driver.findElement(By.name("bday")))
+				.selectByVisibleText(contact.bday);
+
+		new Select(driver.findElement(By.name("bmonth")))
+				.selectByVisibleText(contact.bmonth);
+		driver.findElement(By.name("byear")).clear();
+		driver.findElement(By.name("byear")).sendKeys(contact.byear);
+		new Select(driver.findElement(By.name("new_group")))
+				.selectByVisibleText(contact.newGroup);
+		driver.findElement(By.name("address2")).clear();
+		driver.findElement(By.name("address2")).sendKeys(contact.address2);
+		driver.findElement(By.name("phone2")).clear();
+		driver.findElement(By.name("phone2")).sendKeys(contact.phone2);
+	}
+
+	protected void clickAddNewContact() {
+		driver.findElement(By.linkText("add new")).click();
+	}
+
+	protected void returnToMainPage() {
+		driver.findElement(By.linkText("home")).click();
+	}
+
 	@AfterTest
 	public void tearDown() throws Exception {
 		driver.quit();
