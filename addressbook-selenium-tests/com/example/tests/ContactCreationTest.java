@@ -2,13 +2,12 @@ package com.example.tests;
 
 import org.testng.annotations.Test;
 
-
 public class ContactCreationTest extends TestBase {
 
 	@Test
 	public void testNonEmptyContactCreation() throws Exception {
-		app.getNavigationHelper().openMainPage();
-		app.getContactHelper().initContactCreation();
+		openMainPage();
+		clickAddNewContact();
 		ContactData newContact = new ContactData();
 		newContact.firstName = "Anna";
 		newContact.lastName = "Ivanova";
@@ -25,19 +24,19 @@ public class ContactCreationTest extends TestBase {
 		newContact.phone2 = "7199194";
 		newContact.workPhone = "7199293";
 		
-		app.getContactHelper().fillContactForm(newContact);
-		app.getContactHelper().sumbitContactCreation();
-	
+		fillContactForm(newContact);
+		sumbitGroupCreation();
+		returnToMainPage();
 	}
 	
 	@Test
 	public void testEmptyContactCreation() throws Exception {
-		app.getNavigationHelper().openMainPage();
-		app.getContactHelper().initContactCreation();
+		openMainPage();
+		clickAddNewContact();
 		ContactData newContact = new ContactData("","","","","","","","","-","-","","","","");
-		app.getContactHelper().fillContactForm( newContact);
-		app.getContactHelper().sumbitContactCreation();
-		
+		fillContactForm(newContact);
+		sumbitGroupCreation();
+		returnToMainPage();
 	}
 
 }
